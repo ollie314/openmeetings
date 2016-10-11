@@ -39,5 +39,4 @@ public class CamActivityIcon extends RoomActivityIcon {
 	protected boolean isClickable() {
 		return true;
 	}
-
 }
