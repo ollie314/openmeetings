@@ -16,32 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.openmeetings.web.common;
+package org.apache.openmeetings.web.room.sidebar.icon.activity;
 
-import static org.apache.openmeetings.web.app.Application.getBean;
-import static org.apache.openmeetings.web.util.ProfileImageResourceReference.getUrl;
+import org.apache.openmeetings.web.app.Client;
+import org.apache.openmeetings.web.app.Client.Activity;
+import org.apache.openmeetings.web.room.RoomPanel;
 
-import java.io.File;
-
-import org.apache.openmeetings.core.converter.GenerateImage;
-import org.apache.openmeetings.util.StoredFile;
-
-public class UploadableProfileImagePanel extends UploadableImagePanel {
+public class MicActivityIcon extends RoomActivityIcon {
 	private static final long serialVersionUID = 1L;
-	private final long userId;
 
-	public UploadableProfileImagePanel(String id, final long userId) {
-		super(id);
-		this.userId = userId;
+	public MicActivityIcon(String id, Client client, RoomPanel room) {
+		super(id, client, Activity.broadcastAudio, room);
+		mainCssClass = "activity mic ";
 	}
 
 	@Override
-	protected void processImage(StoredFile sf, File f) throws Exception {
-		getBean(GenerateImage.class).convertImageUserProfile(f, userId, sf.isAsIs());
+	protected String getTitle() {
+		return getString("1606");
 	}
 
 	@Override
-	protected String getImageUrl() {
-		return getUrl(getRequestCycle(), userId);
+	protected boolean isClickable() {
+		return true;
 	}
 }

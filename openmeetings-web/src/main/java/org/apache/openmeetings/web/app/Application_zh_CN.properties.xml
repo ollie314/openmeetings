@@ -1796,9 +1796,6 @@
 	<entry key="install.wizard.params.step3.soxPath">SoX 路径</entry>
 	<entry key="install.wizard.params.step3.soxPath.title">输入SoX的路径, 如果SoX成功安装到系统路径，就不用填写这个字段</entry>
 	<entry key="install.wizard.params.step3.soxPath.text"></entry>
-	<entry key="install.wizard.params.step3.jodPath">JOD 路径</entry>
-	<entry key="install.wizard.params.step3.jodPath.title">到JOD库的路径 (http://code.google.com/p/jodconverter), 配置路径指向JOD的lib目录， 它包含jodconverter-core-version.jar</entry>
-	<entry key="install.wizard.params.step3.jodPath.text"></entry>
 	<entry key="install.wizard.params.step3.officePath">OpenOffice和LibreOffice使用jodconverter的路径</entry>
 	<entry key="install.wizard.params.step3.officePath.title">OpenOffice和LibreOffice的路径（可选），请把它指向真实路径，以防 jodconverter不能自动找到OpenOffice/LibreOffice 安装</entry>
 	<entry key="install.wizard.params.step3.officePath.text">OpenOffice和LibreOffice的路径（可选），请把它指向真实路径，以防 jodconverter不能自动找到OpenOffice/LibreOffice 安装
@@ -1932,4 +1929,16 @@
 	<entry key="calendar.googleID">Google Calendar ID</entry>
 	<entry key="calendar.gcal">Google Calendar</entry>
 	<entry key="calendar.defaultTitle">New Calendar</entry>
+	<entry key="admin.group.form.logo">Logo</entry>
+	<entry key="admin.group.form.tag">Tag</entry>
+	<entry key="admin.group.form.limited">Limits enabled</entry>
+	<entry key="admin.group.form.maxFilesSize">Maximum files size</entry>
+	<entry key="admin.group.form.maxRecordingsSize">Maximum recordings size</entry>
+	<entry key="admin.group.form.maxRooms">Maximum room number</entry>
+	<entry key="admin.group.form.recordingTtl">Recordings expire in</entry>
+	<entry key="admin.group.form.reminderDays">Expire reminder sent in</entry>
+	<entry key="admin.group.form.days">days</entry>
+	<entry key="files.download.original">Original</entry>
+	<entry key="files.download.pdf">PDF</entry>
+	<entry key="files.download.jpg">JPG</entry>
 </properties>
