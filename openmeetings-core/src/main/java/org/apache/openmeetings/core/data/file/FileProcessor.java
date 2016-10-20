@@ -27,7 +27,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.transaction.util.FileHelper;
+import org.apache.commons.io.FileUtils;
 import org.apache.openmeetings.core.converter.FlvExplorerConverter;
 import org.apache.openmeetings.core.converter.GenerateImage;
 import org.apache.openmeetings.core.converter.GenerateThumbs;
@@ -107,8 +107,7 @@ public class FileProcessor {
 			returnError.addItem("No parent", new ConverterProcessResult("Unable to create parent for file: " + file.getCanonicalPath()));
 			return returnError;
 		}
-		FileHelper.copy(is, file);
-		is.close();
+		FileUtils.copyInputStreamToFile(is, file);
 
 		
 		log.debug("canBeConverted: " + canBeConverted);
