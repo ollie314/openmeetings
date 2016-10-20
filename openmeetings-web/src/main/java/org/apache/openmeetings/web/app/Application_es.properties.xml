@@ -1817,9 +1817,6 @@
 	<entry key="install.wizard.params.step3.soxPath">SoX Path (Ruta)</entry>
 	<entry key="install.wizard.params.step3.soxPath.title">Introduzca la ruta a SOX, o déjelo en blanco si SOX está registrado en el path del sistema</entry>
 	<entry key="install.wizard.params.step3.soxPath.text"/>
-	<entry key="install.wizard.params.step3.jodPath">JOD Path (Ruta)</entry>
-	<entry key="install.wizard.params.step3.jodPath.title">Ruta a la libreria JOD (http://code.google.com/p/jodconverter), introduzca la ruta al directorio lib donde se encuentra el archivo jodconverter-core-version.jar</entry>
-	<entry key="install.wizard.params.step3.jodPath.text"/>
 	<entry key="install.wizard.params.step3.officePath">OpenOffice/LibreOffice Path (Ruta) para jodconverter</entry>
 	<entry key="install.wizard.params.step3.officePath.title">Ruta a OpenOffice/LibreOffice (opcional), por favor introdúzcala en el caso que jodconverter no encuentre a OpenOffice/LibreOffice automáticamente</entry>
 	<entry key="install.wizard.params.step3.officePath.text">El path (ruta) a OpenOffice/LibreOffice (opcional) por favor configúrelo correctamente en caso de que jodconverter no pueda encontrar la instalación de OpenOffice/LibreOffice
@@ -1947,4 +1944,13 @@
 	<entry key="network.test.upl.speed">Upload speed</entry>
 	<entry key="access.denied.header">Access denied. You are not authorized to perform this action.</entry>
 	<entry key="save.success">Saved successfully</entry>
+	<entry key="admin.group.form.logo">Logo</entry>
+	<entry key="admin.group.form.tag">Tag</entry>
+	<entry key="admin.group.form.limited">Limits enabled</entry>
+	<entry key="admin.group.form.maxFilesSize">Maximum files size</entry>
+	<entry key="admin.group.form.maxRecordingsSize">Maximum recordings size</entry>
+	<entry key="admin.group.form.maxRooms">Maximum room number</entry>
+	<entry key="admin.group.form.recordingTtl">Recordings expire in</entry>
+	<entry key="admin.group.form.reminderDays">Expire reminder sent in</entry>
+	<entry key="admin.group.form.days">days</entry>
 </properties>

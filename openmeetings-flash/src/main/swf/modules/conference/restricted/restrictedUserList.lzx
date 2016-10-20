@@ -93,74 +93,64 @@
     	}
     </method>
 
-    <netRemoteCallHib name="getRoomModeratorsByRoomId" funcname="conferenceservice.getRoomModeratorsByRoomId"
-                      remotecontext="$once{ canvas.thishib }" >  
-        <netparam><method name="getValue">return canvas.sessionId;</method></netparam>    
-        <netparam><method name="getValue">return hib.currentroomid;</method></netparam>
-        <handler name="ondata" args="value">
-            <![CDATA[
-                if ($debug) Debug.write("getRoomModeratorsByRoomId: ",value);
-                canvas.becomeSuperModerator = false;
-                
-                parent.setRoomValues.applyDefaultModeration = canvas.becomemoderator;
-                canvas.becomeSuperModerator = canvas.becomemoderator;
-                
-                if (!canvas.becomeSuperModerator) {
-                    for (var i=0;i<value.length;i++) {
-                        
-                        if (value[i].user.userId == canvas.userId) {
-                            parent.setRoomValues.applyDefaultModeration = true;
-                            canvas.becomeSuperModerator = value[i].isSuperModerator;
-                            if ($debug) Debug.info("Make this User to an Moderator");
-                            break;
-                        }
-                        
-                    }
-                }
-                
-                if ($debug) Debug.write("canvas.becomemoderator: ",canvas.becomemoderator);
-                if ($debug) Debug.write("canvas.becomeSuperModerator: ",canvas.becomeSuperModerator);
-                
-                canvas.currentusercolor = canvas.getColorForUser();
-                
-                if ($debug) Debug.write(hib.userobject); 
-                this.parent.setRoomValues.doCall();
-            
-            ]]>
-        </handler>
-    </netRemoteCallHib>     
+	<netRemoteCallHib name="getRoomModeratorsByRoomId" funcname="conferenceservice.getRoomModeratorsByRoomId" remotecontext="$once{ canvas.thishib }" >
+		<netparam><method name="getValue">return canvas.sessionId;</method></netparam>
+		<netparam><method name="getValue">return hib.currentroomid;</method></netparam>
+		<handler name="ondata" args="value">
+		<![CDATA[
+			if ($debug) Debug.write("getRoomModeratorsByRoomId: ", canvas.userId, value);
+			canvas.becomeSuperModerator = false;
 
-    <netRemoteCallHib name="setRoomValues" funcname="setRoomValues" remotecontext="$once{ canvas.thishib }" >   
-        <attribute name="applyDefaultModeration" value="false" type="boolean" />
-        <attribute name="groupId" value="0" type="number" />
-        <netparam><method name="getValue">return hib.currentroomid;</method></netparam>
-        <netparam><method name="getValue">return parent.applyDefaultModeration;</method></netparam>
-        <netparam><method name="getValue">return canvas.becomeSuperModerator;</method></netparam>
-        <netparam><method name="getValue">return canvas.currentusercolor;</method></netparam>
-        <handler name="ondata" args="roomStatus">
-            <![CDATA[
-            //The onResult-Handler will be called be the rtmpconnection
-            if ($debug) Debug.write("setRoomValues1: ", roomStatus);
-            //if ($debug) Debug.write("setRoomValues2: ",hib.currentroomid);
-            
-            //if ($debug) Debug.write("+++++++++++++++++ getClientListScope : ",value);
-            
-            if (roomStatus.roomFull) {
-                canvas.thishib.showFullMessage = true;
-                canvas.thishib.disconnect();
-            }
-            
-            var value = roomStatus.clientList;
-            
-            for (var i = 0; i < value.length; ++i){
-                if ( value[i].streamid == canvas.streamid ) {
-                    canvas.isAllowedToDraw = value[i].canDraw;
-                }
+			parent.setRoomValues.applyDefaultModeration = canvas.becomemoderator;
+			canvas.becomeSuperModerator = canvas.becomemoderator;
+
+			if (!canvas.becomeSuperModerator) {
+				for (var i = 0; i < value.length; ++i) {
+					if (value[i].user.id == canvas.userId) {
+						parent.setRoomValues.applyDefaultModeration = true;
+						canvas.becomeSuperModerator = value[i].superModerator;
+						if ($debug) Debug.info("Make this User to an Moderator");
+						break;
+					}
+				}
+			}
+			if ($debug) Debug.write("canvas.becomemoderator: ",canvas.becomemoderator);
+			if ($debug) Debug.write("canvas.becomeSuperModerator: ",canvas.becomeSuperModerator);
+
+			canvas.currentusercolor = canvas.getColorForUser();
+
+			if ($debug) Debug.write(hib.userobject);
+			this.parent.setRoomValues.doCall();
+		]]>
+		</handler>
+	</netRemoteCallHib>
+
+	<netRemoteCallHib name="setRoomValues" funcname="setRoomValues" remotecontext="$once{ canvas.thishib }" >
+		<attribute name="applyDefaultModeration" value="false" type="boolean" />
+		<attribute name="groupId" value="0" type="number" />
+		<netparam><method name="getValue">return hib.currentroomid;</method></netparam>
+		<netparam><method name="getValue">return parent.applyDefaultModeration;</method></netparam>
+		<netparam><method name="getValue">return canvas.becomeSuperModerator;</method></netparam>
+		<netparam><method name="getValue">return canvas.currentusercolor;</method></netparam>
+		<handler name="ondata" args="roomStatus">
+		<![CDATA[
+			//The onResult-Handler will be called be the rtmpconnection
+			if ($debug) Debug.write("setRoomValues1: ", roomStatus);
+			//if ($debug) Debug.write("setRoomValues2: ",hib.currentroomid);
+			//if ($debug) Debug.write("+++++++++++++++++ getClientListScope : ",value);
+			if (roomStatus.roomFull) {
+				canvas.thishib.showFullMessage = true;
+				canvas.thishib.disconnect();
+			}
+			var value = roomStatus.clientList;
+			for (var i = 0; i < value.length; ++i) {
+				if (value[i].streamid == canvas.streamid ) {
+					canvas.isAllowedToDraw = value[i].canDraw;
+				}
 				parent.addItemInitial(value[i]);
 			}
-            
-            //Render and Show User-List
-            parent._participants.sortAndRenderList();
+			//Render and Show User-List
+			parent._participants.sortAndRenderList();
 
 			parent.delayedCreateVideo(value);
 			//this content must be inited _after_ setting the default values
@@ -171,7 +161,7 @@
 				canvas._currentChatPanel.toggleopen();
 			}
 		]]>
-		</handler>  
+		</handler>
 	</netRemoteCallHib>
 
 	<method name="delayedCreateVideo" args="clients">
